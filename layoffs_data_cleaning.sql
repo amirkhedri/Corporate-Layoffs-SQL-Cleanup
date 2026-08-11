@@ -101,6 +101,13 @@ select *from layoffs_staging2 where industry is null or industry='';
 update layoffs_staging2 
 set industry=null
 where industry='';
+UPDATE layoffs_staging2 t1
+JOIN layoffs_staging2 t2
+ON t1.company = t2.company
+SET t1.industry = t2.industry
+WHERE t1.industry IS NULL 
+AND t2. industry IS NOT NULL;
+
 
 
 
