@@ -98,6 +98,10 @@ select distinct industry from layoffs_staging2;
  -- 3. Null Values or Blank values
 select *from layoffs_staging2 where total_laid_off is null and percentage_laid_off is null;
 select *from layoffs_staging2 where industry is null or industry='';
+update layoffs_staging2 
+set industry=null
+where industry='';
+
 
 
  
