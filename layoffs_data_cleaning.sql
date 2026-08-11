@@ -119,6 +119,7 @@ Delete from layoffs_staging2
 where total_laid_off is null and percentage_laid_off is null;
 
 -- 4 . Remove Any Columns
+-- we used this command above
 -- ALTER TABLE layoffs_staging2
 -- DROP COLUMN row_num;
 
