@@ -110,6 +110,14 @@ AND t2. industry IS NOT NULL;
 
 
 
+-- calculating how many rows will be deleted
+select total_laid_off , percentage_laid_off , count(*) As Missingdata from layoffs_staging2  -- count* counts all the rows 
+where total_laid_off is null and percentage_laid_off is null
+group by total_laid_off , percentage_laid_off
+
+
+
+
 
  
  
