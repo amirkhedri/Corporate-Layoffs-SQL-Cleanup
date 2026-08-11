@@ -7,3 +7,6 @@ select *from layoffs;
 
 Create Table layoffs_staging 
 Like layoffs;
+insert layoffs_staging
+select *from layoffs;
+select *from layoffs_staging
