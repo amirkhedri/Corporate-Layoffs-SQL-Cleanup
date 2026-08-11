@@ -65,7 +65,13 @@ update layoffs_staging2
 set company = trim(company);
 select company from layoffs_staging2;
 
-
+-- Making all the crypto% be Crypto
+select * from layoffs_staging2
+where industry like "Crypto%";
+update layoffs_staging2
+set industry = "Crypto"
+where industry like "Crypto%";
+select distinct industry from layoffs_staging2;
 
 
 
