@@ -43,6 +43,10 @@ insert layoffs_staging2
 select *
 , Row_Number() over (partition by stage ,company ,  industry , total_laid_off , country, percentage_laid_off , `date`) as "row_num"
 from layoffs_staging;
+SET SQL_SAFE_UPDATES = 0;
+delete from layoffs_staging2
+where row_num >= 2 ;
+
 
 
 
