@@ -59,7 +59,7 @@ select * from duplicate_check
 where row_num >= 2;
 
 -- 2. Standardize the Data
--- Removing Extra Spaces by Trim by Updating them
+-- Removing Extra Spaces by Trim by Updating them (Removing white spaces)
 select company , trim(company) As removedSpaces from layoffs_staging2;
 update layoffs_staging2
 set company = trim(company);
@@ -79,6 +79,16 @@ select distinct industry from layoffs_staging2;
  set country= "United States"
  where country like "United States%";
  select distinct country from layoffs_staging2 order by 1;
+ 
+ 
+ -- changing from string : date to date : date  and also adding right mysql format
+ select `date`, str_to_date(`date`, '%m/%d/%Y') from layoffs_staging2;
+ Update layoffs_staging2
+ set date = str_to_date(`date`, '%m/%d/%Y');
+ select `date` from layoffs_staging2;
+ 
+ 
+ 
  
 
 
