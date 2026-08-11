@@ -111,10 +111,16 @@ AND t2. industry IS NOT NULL;
 
 
 -- calculating how many rows will be deleted
-select total_laid_off , percentage_laid_off , count(*) As Missingdata from layoffs_staging2  -- count* counts all the rows 
+select total_laid_off , percentage_laid_off , count(*) As Missingdata from layoffs_staging2  -- count(*) counts all the rows from the output
 where total_laid_off is null and percentage_laid_off is null
-group by total_laid_off , percentage_laid_off
+group by total_laid_off , percentage_laid_off;
 
+Delete from layoffs_staging2
+where total_laid_off is null and percentage_laid_off is null;
+
+-- 4 . Remove Any Columns
+-- ALTER TABLE layoffs_staging2
+-- DROP COLUMN row_num;
 
 
 
