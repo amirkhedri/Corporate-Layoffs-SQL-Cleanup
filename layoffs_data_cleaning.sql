@@ -6,4 +6,4 @@ select *from layoffs;
 -- 4 . Remove Any Columns
 
 Create Table layoffs_staging 
-Like lay_offs;
+Like layoffs;
