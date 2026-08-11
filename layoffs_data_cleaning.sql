@@ -27,6 +27,7 @@ from layoffs_staging
 )
 select * from duplicate_cte 
 where row_num >= 2 ;
+-- Creating another Table for deleting dups because of MySQL limmitiations 
 CREATE TABLE layoffs_staging2 (
     company TEXT,
     location TEXT,
@@ -48,6 +49,24 @@ delete from layoffs_staging2
 where row_num >= 2 ;
 ALTER TABLE layoffs_staging2
 DROP COLUMN row_num;
+with duplicate_check as 
+(
+select *
+, Row_Number() over (partition by stage ,company ,  industry , total_laid_off , country, percentage_laid_off , `date`) as "row_num"
+from layoffs_staging2
+)
+select * from duplicate_check
+where row_num >= 2;
+
+-- 2. Standardize the Data
+-- Removing Extra Spaces by Trim by Updating them
+select company , trim(company) As removedSpaces from layoffs_staging2;
+update layoffs_staging2
+set company = trim(company);
+select company from layoffs_staging2;
+
+
+
 
 
 
