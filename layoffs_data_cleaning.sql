@@ -86,7 +86,9 @@ select distinct industry from layoffs_staging2;
  Update layoffs_staging2
  set date = str_to_date(`date`, '%m/%d/%Y');
  select `date` from layoffs_staging2;
- 
+ -- changing the data type pf date from to text to Actuall Date data type
+ alter table layoffs_staging2
+ modify column `date` Date; 
  
  
  
