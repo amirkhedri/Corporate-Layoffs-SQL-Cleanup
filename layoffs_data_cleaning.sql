@@ -39,5 +39,10 @@ CREATE TABLE layoffs_staging2 (
     funds_raised_millions INT DEFAULT NULL,
     row_num INT
 );
+insert layoffs_staging2 
+select *
+, Row_Number() over (partition by stage ,company ,  industry , total_laid_off , country, percentage_laid_off , `date`) as "row_num"
+from layoffs_staging;
+
 
 
