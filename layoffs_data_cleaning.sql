@@ -72,6 +72,15 @@ update layoffs_staging2
 set industry = "Crypto"
 where industry like "Crypto%";
 select distinct industry from layoffs_staging2;
+ -- Checking also other values
+ select distinct country from layoffs_staging2 order by 1;
+ -- united states has 2 values must be fixed
+ update layoffs_staging2
+ set country= "United States"
+ where country like "United States%";
+ select distinct country from layoffs_staging2 order by 1;
+ 
+
 
 
 
