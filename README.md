@@ -60,7 +60,3 @@ Missing data was evaluated and either recovered or strategically removed.
 
 ---
 
-<div align="center">
-  <b>👨‍💻 Engineered by Amirmohammad Khedri</b> <br>
-  <i>Built for the 30-Week Data Analytics Master Schedule</i>
-</div>
