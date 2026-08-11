@@ -89,7 +89,17 @@ select distinct industry from layoffs_staging2;
  -- changing the data type pf date from to text to Actuall Date data type
  alter table layoffs_staging2
  modify column `date` Date; 
+ select *from layoffs_staging2;
  
+ 
+ 
+ 
+ 
+ -- 3. Null Values or Blank values
+select *from layoffs_staging2 where total_laid_off is null and percentage_laid_off is null;
+select *from layoffs_staging2 where industry is null or industry='';
+
+
  
  
 
