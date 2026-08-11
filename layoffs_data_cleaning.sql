@@ -46,7 +46,8 @@ from layoffs_staging;
 SET SQL_SAFE_UPDATES = 0;
 delete from layoffs_staging2
 where row_num >= 2 ;
-
+ALTER TABLE layoffs_staging2
+DROP COLUMN row_num;
 
 
 
