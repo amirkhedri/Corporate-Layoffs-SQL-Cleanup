@@ -27,5 +27,17 @@ from layoffs_staging
 )
 select * from duplicate_cte 
 where row_num >= 2 ;
+CREATE TABLE layoffs_staging2 (
+    company TEXT,
+    location TEXT,
+    industry TEXT,
+    total_laid_off INT DEFAULT NULL,
+    percentage_laid_off TEXT,
+    `date` TEXT,
+    stage TEXT,
+    country TEXT,
+    funds_raised_millions INT DEFAULT NULL,
+    row_num INT
+);
 
 
