@@ -47,7 +47,6 @@ select company , Year(`date`) as year , sum(total_laid_off) as total_off
 from layoffs_staging2
 group by company ,Year(`date`);
 
-
 with maximum_laidoff AS
 (
 select company , Year(`date`) as year , sum(total_laid_off) as total_off
@@ -57,6 +56,7 @@ group by company ,Year(`date`)
 )
 select company , year , total_off , dense_rank() over(partition by year order by total_off desc) as "Lay Off rankings in a year"
 from maximum_laidoff;
+
 with maximum_laidoff AS
 (
 select company , Year(`date`) as year , sum(total_laid_off) as total_off
@@ -67,4 +67,18 @@ group by company ,Year(`date`)
 select company , year , total_off , row_number () over(order by total_off desc) as "Lay Off rankings in a year"
 from maximum_laidoff;
 
+with maximum_laidoff AS
+(
+select company , Year(`date`) as year , sum(total_laid_off) as total_off
+from layoffs_staging2
+group by company ,Year(`date`)
 
+)
+,
+rankings as 
+(
+select company , year , total_off , dense_rank() over(partition by year order by total_off desc) as "Rankings"
+from maximum_laidoff
+)
+select company , year , total_off , Rankings from rankings
+where Rankings <=5;
