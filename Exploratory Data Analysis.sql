@@ -32,4 +32,13 @@ order by 2 desc;
 
 select substring(`date` , 1 , 7) As "MONTH" , sum(total_laid_off) from layoffs_staging2
 group by month 
-order by 1 desc;
+order by 2;
+
+with rolling_total AS
+(
+select substring(`date` , 1 , 7) As "MONTH" , sum(total_laid_off) as total_off from layoffs_staging2 
+group by month
+order by 1 asc
+)
+select month ,total_off , sum(total_off) over(order by month) AS rolling_total 
+from rolling_total;
