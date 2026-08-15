@@ -42,3 +42,29 @@ order by 1 asc
 )
 select month ,total_off , sum(total_off) over(order by month) AS rolling_total 
 from rolling_total;
+
+select company , Year(`date`) as year , sum(total_laid_off) as total_off
+from layoffs_staging2
+group by company ,Year(`date`);
+
+
+with maximum_laidoff AS
+(
+select company , Year(`date`) as year , sum(total_laid_off) as total_off
+from layoffs_staging2
+group by company ,Year(`date`)
+
+)
+select company , year , total_off , dense_rank() over(partition by year order by total_off desc) as "Lay Off rankings in a year"
+from maximum_laidoff;
+with maximum_laidoff AS
+(
+select company , Year(`date`) as year , sum(total_laid_off) as total_off
+from layoffs_staging2
+group by company ,Year(`date`)
+
+)
+select company , year , total_off , row_number () over(order by total_off desc) as "Lay Off rankings in a year"
+from maximum_laidoff;
+
+
