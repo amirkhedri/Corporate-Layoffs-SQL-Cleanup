@@ -25,3 +25,11 @@ select year(`date`) , sum(total_laid_off)
 from layoffs_staging2
 group by YEAR(`date`)
 order by 1;
+
+select stage , sum(total_laid_off) from layoffs_staging2 
+group by stage
+order by 2 desc;
+
+select substring(`date` , 1 , 7) As "MONTH" , sum(total_laid_off) from layoffs_staging2
+group by month 
+order by 1 desc;
