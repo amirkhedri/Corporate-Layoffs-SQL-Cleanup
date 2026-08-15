@@ -11,4 +11,9 @@ select company , sum(total_laid_off) from layoffs_staging2
 group by company
 order by 2 desc;
 
+select industry , sum(total_laid_off) from layoffs_staging2 
+group by industry
+order by 2 desc;
+
+
 
